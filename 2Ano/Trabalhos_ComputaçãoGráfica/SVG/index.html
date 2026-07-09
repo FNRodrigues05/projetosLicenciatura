@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>59119 - SVG</title>
+    <style>
+        body {
+            display: block;
+            background-color: #f0f0f0;
+        }
+
+        #arena {
+            border: 2px solid #000;
+        }
+
+        #terminal {
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Trabalho de 59119 - SVG</h1>
+
+    <div>
+        <svg id="arena" width="800" height="400">
+            <!-- Definição do padrão para a textura -->
+            <defs>
+                <pattern id="doorTexture" patternUnits="objectBoundingBox" width="20" height="160">
+                    <image href="media/porta.png" x="0" y="0" width="20" height="35%" preserveAspectRatio="none" />
+                </pattern>
+                <pattern id="arieteTexture" patternUnits="objectBoundingBox" width="1" height="1">
+                    <image href="media/ariete.png" x="0" y="0" width="20" height="70" preserveAspectRatio="none" />
+                </pattern>
+                <pattern id="arenaTexture" patternUnits="objectBoundingBox" width="1" height="1">
+                    <image href="media/arena.png" x="0" y="0" width="800" height="450" />
+                </pattern>
+            </defs>
+            <rect width="800" height="400" fill="url(#arenaTexture)"></rect>
+            <rect id="ariete" x="50" y="180" width="20" height="70" fill="url(#arieteTexture)"></rect>
+        </svg>
+        <div id="terminal"></div>
+    </div>
+
+    <script src="js/prog.js"></script>
+</body>
+
+</html>

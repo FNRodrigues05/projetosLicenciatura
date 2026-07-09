@@ -1,0 +1,656 @@
+<x3d>
+        <scene>
+            <!-- Iluminação e Ambiente -->
+            <background skyColor="0.5 0.7 1"></background>
+            <directionalLight direction="-1 -1 -1" intensity="0.8"></directionalLight>
+
+            <!--Rua-->
+            <transform DEF="street">
+                <transform translation="0 -3 1.8">
+                    <shape>
+                        <box size="13 .1 1.5"></box>
+                        <appearance>
+                            <material diffuseColor=".1 .1 .1" specularColor="0.2 0.2 0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+                <transform translation="0 -2.98 1.8">
+                    <shape>
+                        <box size="13 .1 .1"></box>
+                        <appearance>
+                            <material diffuseColor="yellow" specularColor="0.2 0.2 0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+            </transform>
+
+            <!-- Transformação Principal do Edifício -->
+            <transform DEF="Building">
+                <!-- Corpo Principal do Edifício -->
+                <shape>
+                    <box size="10 6 2"></box>
+                    <appearance>
+                        <material diffuseColor="0.1 0.1 0.1" specularColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                </shape>
+
+                <!-- Cantos do Edifício-->
+                <transform translation="-4.95 0 .94">
+                    <shape>
+                        <box size=".2 6 0.22"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="4.95 0 .94">
+                    <shape>
+                        <box size=".2 6 0.22"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-4.95 0 -.94">
+                    <shape>
+                        <box size=".2 6 0.22"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="4.95 0 -.94">
+                    <shape>
+                        <box size=".2 6 0.22"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <!-- Planos do Edíficio-->
+
+                <transform translation="0 -2.95 0">
+                    <shape>
+                        <box size="10.05 .2 2.13"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="0 2.95 0">
+                    <shape>
+                        <box size="10.05 .2 2.121"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+            </transform>
+
+            <!-- Janelas 1º fila-->
+            <transform DEF="janela_1fila">
+        
+                <transform translation="-3.8 2 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-4.04 2 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-3.8 1.6 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="-2.3 2 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-2.54 2 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-2.3 1.6 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="-.8 2 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-1.04 2 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-.8 1.6 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation=".7 2 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation=".46 2 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation=".7 1.6 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="2.2 2 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="1.96 2 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="2.2 1.6 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="3.7 2 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="3.46 2 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="3.7 1.6 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+            </transform>
+
+            <!-- Janelas 2º fila-->
+            <transform DEF="janela_2fila">
+                <transform translation="-3.8 .3 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-4.04 .3 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-3.8 -.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="-2.3 .3 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-2.54 .3 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-2.3 -.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="-.8 .3 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-1.04 .3 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-.8 -.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation=".7 .3 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation=".46 .3 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation=".7 -.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="2.2 .3 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="1.96 .3 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="2.2 -.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="3.7 .3 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="3.46 .3 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="3.7 -.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+            </transform>
+
+            <!-- Janelas 3º fila-->
+            <transform DEF="janela_3fila">
+
+                <transform translation="-3.8 -1.7 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-4.04 -1.7 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-3.8 -2.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="-2.3 -1.7 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-2.54 -1.7 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-2.3 -2.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="2.2 -1.7 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="1.96 -1.7 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="2.2 -2.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+
+
+                <transform translation="3.7 -1.7 1.01">
+                    <shape>
+                        <box size=".7 1 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9" transparency="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="3.46 -1.7 1.01">
+                    <shape>
+                        <box size=".2 .99 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="3.7 -2.1 1.01">
+                    <shape>
+                        <box size=".69 .2 .05"></box>
+                        <appearance>
+                            <material diffuseColor="black" transparecy="0.2"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+            </transform>
+            <!-- Porta -->
+            <transform DEF="door">
+                <transform translation="0 -2 1.01">
+                    <shape>
+                        <box size="1.5 2 0.1"></box>
+                        <appearance>
+                            <material diffuseColor="0.3 0.6 0.9"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="0 -.9 1.01">
+                    <shape>
+                        <box size="1.5 .2 0.11"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-.85 -1.9 1.01">
+                    <shape>
+                        <box size=".2 2.2 0.11"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation="-.075 -1.9 1.01">
+                    <shape>
+                        <box size=".2 2.2 0.11"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+                <transform translation=".7 -1.9 1.01">
+                    <shape>
+                        <box size=".2 2.2 0.11"></box>
+                        <appearance>
+                            <material diffuseColor="black"></material>
+                        </appearance>
+                    </shape>
+                </transform>
+
+            </transform>
+
+            <!-- Animação -->
+            <timeSensor DEF="Timer" cycleInterval="5" loop="true"></timeSensor>
+            <positionInterpolator DEF="MoveBuilding" key="0 0.5 1" keyValue="0 -10 0 0 0 0 0 0 0">
+            </positionInterpolator>
+            <positionInterpolator DEF="Move1fila" key="0 0.5 1" keyValue="-20 0 0 0 0 0 0 0 0">
+            </positionInterpolator>
+            <positionInterpolator DEF="Move2fila" key=" 0 0.5 1" keyValue="20 0 0 0 0 0 0 0 0">
+            </positionInterpolator>
+            <positionInterpolator DEF="Move3fila" key="0 0.5 1" keyValue="0 20 0 0 0 0 0 0 0">
+            </positionInterpolator>
+            <positionInterpolator DEF="MoveDoor" key="0 0.5 1" keyValue="0 20 0 0 0 0 0 0 0">
+            </positionInterpolator>
+            <positionInterpolator DEF="MoveStreet" key="0 0.5 1" keyValue="0 5 0 0 0 0 0 0 0">
+            </positionInterpolator>
+
+
+            <route fromNode="Timer" fromField="fraction_changed" toNode="MoveBuilding" toField="set_fraction">
+            </route>
+            <route fromNode="Timer" fromField="fraction_changed" toNode="Move1fila" toField="set_fraction">
+            </route>
+            <route fromNode="Timer" fromField="fraction_changed" toNode="Move2fila" toField="set_fraction">
+            </route>
+            <route fromNode="Timer" fromField="fraction_changed" toNode="Move3fila" toField="set_fraction">
+            </route>
+            <route fromNode="Timer" fromField="fraction_changed" toNode="MoveDoor" toField="set_fraction">
+            </route>
+            <route fromNode="Timer" fromField="fraction_changed" toNode="MoveStreet" toField="set_fraction">
+            </route>
+
+            <route fromNode="MoveBuilding" fromField="value_changed" toNode="Building" toField="set_translation">
+            </route>
+            <route fromNode="Move1fila" fromField="value_changed" toNode="janela_1fila" toField="set_translation">
+            </route>
+            <route fromNode="Move2fila" fromField="value_changed" toNode="janela_2fila" toField="set_translation">
+            </route>
+            <route fromNode="Move3fila" fromField="value_changed" toNode="janela_3fila" toField="set_translation">
+            </route>
+            <route fromNode="MoveDoor" fromField="value_changed" toNode="door" toField="set_translation">
+            </route>
+            <route fromNode="MoveStreet" fromField="value_changed" toNode="street" toField="set_translation">
+            </route>
+
+
+        </scene>
+    </x3d>
