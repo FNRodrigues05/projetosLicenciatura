@@ -34,7 +34,6 @@ Foram implementadas duas técnicas clássicas de filtragem:
 * `filtro.asm`: Código-fonte principal em Assembly contendo toda a lógica de processamento e filtros.
 * `relatório.pdf`: Documentação técnica detalhada com análise de performance e comparação visual dos resultados.
 * `cat_noisy.gray`: Ficheiro de entrada (imagem original com ruído).
-* `enunciado.pdf`: Descrição dos requisitos e objetivos do trabalho.
 
 ## 5. Como Executar
 
