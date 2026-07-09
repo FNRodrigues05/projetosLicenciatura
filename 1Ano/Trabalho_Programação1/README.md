@@ -39,8 +39,3 @@ Para apagar o ficheiro executável compilado, basta correr:
 ```bash
 make clean
 ```
-
-## Autores
-* Tiago Hermitério
-* Pedro Soares
-* Francisco Rodrigues
