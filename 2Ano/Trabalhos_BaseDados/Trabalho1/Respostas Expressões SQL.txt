@@ -1,0 +1,130 @@
+a)
+select DISTINCT membro.nome 
+from membro,doce,criou,temingrediente 
+where membro.idmembro=criou.membro and membro.pais='Espanha' and doce.genero='regional' AND TemIngrediente.Ingrediente IN ('Chocolate', 'Canela')
+GROUP BY membro.nome
+HAVING COUNT(DISTINCT temingrediente.ingrediente) = 2;
+
+b)
+SELECT DISTINCT d.nome 
+FROM membro AS m
+JOIN amigo AS a ON m.IdMembro = a.membro1
+JOIN fez AS F ON a.membro2 = F.membro
+JOIN criou AS c ON f.membro = c.membro AND f.doce = c.doce
+JOIN doce AS D ON c.doce = D.nome
+WHERE m.nome = 'Joaquim José' AND d.genero = 'tradicional' AND f.aspeto >= 5;
+
+c)
+
+d)
+SELECT DISTINCT doce.nome
+FROM fez, temingrediente, doce
+WHERE temingrediente.ingrediente = 'Natas' 
+  AND fez.sabor <= 4 
+  AND fez.doce = temingrediente.doce 
+  AND doce.nome = fez.doce;
+
+e)
+SELECT DISTINCT membro.nome
+FROM membro, criou, temingrediente
+WHERE membro.idmembro = criou.membro AND criou.doce = temingrediente.doce  AND temingrediente.ingrediente IN ('Canela', 'Leite')
+GROUP BY membro.nome
+HAVING COUNT(DISTINCT temingrediente.ingrediente) = 2;
+
+f)
+SELECT DISTINCT doce.nome
+FROM doce,temingrediente
+WHERE doce.nome = temingrediente.doce AND temingrediente.ingrediente IN ('Maçã', 'Baunilha')
+
+g)
+SELECT SUM(ingrediente.custo)
+FROM temingrediente
+JOIN ingrediente ON temingrediente.ingrediente = ingrediente.nome
+WHERE temingrediente.doce = 'arroz doce';
+
+h)
+SELECT temingrediente.doce, SUM(ingrediente.custo * CAST(temingrediente.quantidade AS DOUBLE PRECISION) / 100) AS custo_total
+FROM temingrediente
+JOIN ingrediente ON temingrediente.ingrediente = ingrediente.nome
+GROUP BY temingrediente.doce;
+
+i)
+SELECT membro.nome,count(criou.doce)
+FROM criou
+JOIN membro ON criou.membro = membro.idmembro
+GROUP BY
+criou.membro,membro.nome
+
+j)
+SELECT membro.nome, COUNT(criou.doce) AS total
+FROM criou
+JOIN membro ON criou.membro = membro.idmembro
+GROUP BY membro.nome
+ORDER BY total DESC
+
+k)
+SELECT membro.nome
+FROM fez
+JOIN membro ON fez.membro = membro.idmembro
+WHERE fez.doce = (
+    SELECT temingrediente.doce
+    FROM temingrediente
+    JOIN ingrediente ON temingrediente.ingrediente = ingrediente.nome
+    GROUP BY temingrediente.doce
+    ORDER BY SUM(ingrediente.custo * CAST(temingrediente.quantidade AS DOUBLE PRECISION) / 100) DESC
+    LIMIT 1);
+
+l)
+SELECT m1.nome
+FROM membro AS m1
+WHERE m1.nome != 'Joaquim José' 
+  AND NOT EXISTS (
+    SELECT amigo.membro2
+    FROM amigo
+    JOIN membro AS mj ON mj.nome = 'Joaquim José'
+    WHERE amigo.membro1 = mj.idmembro
+      AND amigo.membro2 NOT IN (
+        SELECT amigo.membro2
+        FROM amigo
+        WHERE amigo.membro1 = m1.idmembro
+      )
+);
+
+m)
+SELECT membro.nome
+FROM membro
+JOIN fez ON membro.idmembro = fez.membro
+WHERE fez.doce IN (
+    SELECT doce
+    FROM temingrediente
+    WHERE ingrediente = 'Baunilha'
+)
+GROUP BY membro.nome
+HAVING COUNT(DISTINCT fez.doce) = (
+    SELECT COUNT(DISTINCT doce)
+    FROM temingrediente
+    WHERE ingrediente = 'Baunilha'
+);
+
+n)
+SELECT DISTINCT Doce
+FROM Fez
+WHERE Doce NOT IN (
+    SELECT Doce
+    FROM Fez
+    WHERE Tempo != 1
+);
+
+o)
+SELECT temingrediente.doce, 
+       SUM(ingrediente.custo * CAST(temingrediente.quantidade AS DOUBLE PRECISION) / 100) AS custo_total,
+       MIN(fez.Tempo) AS tempo_minimo
+FROM temingrediente
+JOIN ingrediente ON temingrediente.ingrediente = ingrediente.nome
+JOIN fez ON fez.doce = temingrediente.doce
+GROUP BY temingrediente.doce
+ORDER BY custo_total ASC, tempo_minimo ASC
+LIMIT 1;
+
+
+

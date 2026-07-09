@@ -1,0 +1,21 @@
+create table Membro(
+  Nome VARCHAR(50),IdMembro INTEGER PRIMARY KEY,pais VARCHAR(20),DataNasc DATE);
+  
+CREATE table Doce(
+  Nome VARCHAR(50) PRIMARY KEY,Descricao VARCHAR(200), genero VARCHAR(50));
+  
+create table Amigo(
+  Membro1 INTEGER, Membro2 INTEGER, PRIMARY KEY (Membro1,Membro2), FOREIGN KEY (Membro1) REFERENCES Membro(IdMembro), FOREIGN KEY (Membro2) REFERENCES Membro(IdMembro));
+    
+create table Criou(
+  Membro INTEGER, Doce VARCHAR(50), PRIMARY KEY (Membro, Doce), FOREIGN KEY (Membro) REFERENCES Membro(IdMembro), FOREIGN KEY (Doce) REFERENCES Doce(Nome));
+   
+CREATE TABLE Fez(
+  Membro INTEGER, Doce VARCHAR(50), PRIMARY KEY (Membro, Doce), FOREIGN KEY (Membro) REFERENCES Membro(IdMembro), FOREIGN KEY (Doce) REFERENCES Doce(Nome),Tempo INTEGER CHECK (Tempo BETWEEN   1 AND 5), Aspeto INTEGER CHECK (Aspeto BETWEEN 1 AND 5), Sabor INTEGER CHECK (Sabor BETWEEN 1 AND 5));
+  
+create TABLE Ingrediente(
+  Nome VARCHAR(50) PRIMARY KEY, Custo FLOAT);
+  
+create table TemIngrediente(
+  Doce VARCHAR(50), Ingrediente VARCHAR(50), Quantidade VARCHAR(20), PRIMARY KEY (Doce,Ingrediente), FOREIGN KEY (Doce) REFERENCES Doce(Nome), FOREIGN KEY (Ingrediente) REFERENCES   Ingrediente(Nome));
+  

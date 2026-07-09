@@ -1,0 +1,380 @@
+
+
+CREATE TABLE Editoras (
+    NIF VARCHAR(20) PRIMARY KEY,
+    Nome VARCHAR(100),
+    Email VARCHAR(100)
+);
+
+CREATE TABLE Genero (
+    Nome_genero VARCHAR(50) PRIMARY KEY
+);
+
+CREATE TABLE Livros (
+    ISBN VARCHAR(20) PRIMARY KEY,
+    Titulo VARCHAR(100),
+    Nome_genero VARCHAR(50),
+    FOREIGN KEY (Nome_genero) REFERENCES Genero(Nome_genero)
+);
+
+CREATE TABLE Autores (
+    Id_autor SERIAL PRIMARY KEY,
+    Nome VARCHAR(100),
+    Nacionalidade VARCHAR(50)
+);
+
+CREATE TABLE Encomenda (
+    Valor DECIMAL(10, 2),
+    Dia INT,
+    Mes INT,
+    Ano INT,
+    NIF_Editora VARCHAR(20),
+    PRIMARY KEY (Dia, Mes, Ano, NIF_Editora),
+    FOREIGN KEY (NIF_Editora) REFERENCES Editoras(NIF)
+);
+
+CREATE TABLE Exemplares_de_Livros (
+    Id_exemplar SERIAL PRIMARY KEY,
+    ISBN VARCHAR(20),
+    Link VARCHAR(200),
+    FOREIGN KEY (ISBN) REFERENCES Livros(ISBN)
+);
+
+CREATE TABLE Leitor (
+    NIF VARCHAR(20) PRIMARY KEY,
+    Nome VARCHAR(100),
+    Email VARCHAR(100),
+    Nacionalidade VARCHAR(50),
+    Tipo VARCHAR(20) CHECK (Tipo IN ('Regular', 'Frequente'))
+);
+
+CREATE TABLE Amizade (
+    NIF_Amigo VARCHAR(20),
+    NIF_Leitor VARCHAR(20),
+    PRIMARY KEY (NIF_Amigo, NIF_Leitor),
+    FOREIGN KEY (NIF_Amigo) REFERENCES Leitor(NIF),
+    FOREIGN KEY (NIF_Leitor) REFERENCES Leitor(NIF)
+);
+
+CREATE TABLE Avaliacao (
+    Estrelas INT CHECK (Estrelas BETWEEN 1 AND 5),
+    Comentario TEXT,
+    ISBN VARCHAR(20),
+    NIF_Leitor VARCHAR(20),
+    PRIMARY KEY (ISBN, NIF_Leitor),
+    FOREIGN KEY (ISBN) REFERENCES Livros(ISBN),
+    FOREIGN KEY (NIF_Leitor) REFERENCES Leitor(NIF)
+);
+
+CREATE TABLE Faturacao (
+    Mes INT,
+    Ano INT,
+    Valor DECIMAL(10, 2),
+    NIF_Leitor VARCHAR(20),
+    PRIMARY KEY (Mes, Ano, NIF_Leitor),
+    FOREIGN KEY (NIF_Leitor) REFERENCES Leitor(NIF)
+);
+
+CREATE TABLE Aluguer (
+    Id_exemplar INT,
+    NIF_Leitor VARCHAR(20),
+    Valor DECIMAL(10, 2),
+    NºSemana INT,
+    Ano INT,
+    PRIMARY KEY (Id_exemplar, NºSemana, Ano),
+    FOREIGN KEY (Id_exemplar) REFERENCES Exemplares_de_Livros(Id_exemplar),
+    FOREIGN KEY (NIF_Leitor) REFERENCES Leitor(NIF)
+);
+
+CREATE TABLE Livro_Autor (
+    ISBN VARCHAR(20),
+    Id_autor INT,
+    PRIMARY KEY (ISBN, Id_autor),
+    FOREIGN KEY (ISBN) REFERENCES Livros(ISBN),
+    FOREIGN KEY (Id_autor) REFERENCES Autores(Id_autor)
+);
+
+INSERT INTO Leitor (NIF, Nome, Email, Nacionalidade, Tipo) VALUES
+('L001', 'João Silva', 'joao@email.com', 'Portugal', 'Regular'),
+('L002', 'Ana Santos', 'ana@email.com', 'Brasil', 'Regular'),
+('L003', 'Pedro Oliveira', 'pedro@email.com', 'Angola', 'Regular'),
+('L004', 'Maria Costa', 'maria@email.com', 'Portugal', 'Regular'),
+('L005', 'Carlos Gomes', 'carlos@email.com', 'Moçambique', 'Regular'),
+('L006', 'Cláudia Ramos', 'claudia@email.com', 'Portugal', 'Frequente'),
+('L007', 'Luís Ferreira', 'luis@email.com', 'Brasil', 'Frequente'),
+('L008', 'Sofia Monteiro', 'sofia@email.com', 'Angola', 'Frequente'),
+('L009', 'Rafael Cruz', 'rafael@email.com', 'Portugal', 'Frequente'),
+('L010', 'Helena Martins', 'helena@email.com', 'Cabo Verde', 'Frequente');
+
+INSERT INTO Genero (Nome_genero) VALUES
+('Romance'),
+('Histórico'),
+('Drama'),
+('Ficção Científica'),
+('Fantasia'),
+('Biografia');
+
+INSERT INTO Livros (ISBN, Titulo, Nome_genero) VALUES
+('1111', 'Memorial do Convento', 'Romance'),
+('2222', 'O Alquimista', 'Ficção Científica'),
+('3333', '1984', 'Drama'),
+('4444', 'Dom Casmurro', 'Histórico'),
+('5555', 'A Revolução dos Bichos', 'Drama'),
+('6666', 'Senhor dos Anéis', 'Fantasia'),
+('7777', 'Harry Potter', 'Fantasia'),
+('8888', 'O Pequeno Príncipe', 'Biografia'),
+('9999', 'Os Maias', 'Romance'),
+('1010', 'A Metamorfose', 'Histórico');
+
+INSERT INTO Autores (Nome, Nacionalidade) VALUES
+('José Saramago', 'Portugal'),
+('George Orwell', 'Reino Unido'),
+('J.K. Rowling', 'Reino Unido');
+
+INSERT INTO Livro_Autor (ISBN, Id_autor) VALUES
+('1111', 1),
+('2222', 2),
+('3333', 2),
+('4444', 1),
+('5555', 2),
+('7777', 3);
+
+INSERT INTO Exemplares_de_Livros (ISBN, Link) VALUES
+('1111', 'link_livro1111'),
+('2222', 'link_livro2222'),
+('2222', 'link_livro2222_2'),
+('2222', 'link_livro2222_3');
+
+
+INSERT INTO Aluguer (Id_exemplar, NIF_Leitor, Valor, NºSemana, Ano) VALUES
+(1, 'L001', 5.00, 1, 2025),
+(2, 'L002', 5.00, 2, 2025),
+(3, 'L006', 10.00, 1, 2025);
+
+INSERT INTO Faturacao (Mes, Ano, Valor, NIF_Leitor) VALUES
+(1, 2025, 50.00, 'L001'),
+(1, 2025, 60.00, 'L002'),
+(1, 2025, 40.00, 'L003'),
+(1, 2025, 30.00, 'L010'), -- Pagamento incorreto
+(1, 2025, 75.00, 'L004'),
+(1, 2025, 90.00, 'L005');
+
+INSERT INTO Avaliacao (Estrelas, Comentario, ISBN, NIF_Leitor) VALUES
+(5, 'Obra incrível', '1111', 'L001'),
+(4, 'Muito interessante', '2222', 'L002'),
+(3, 'Regular', '3333', 'L003');
+
+INSERT INTO Amizade (NIF_Amigo, NIF_Leitor) VALUES
+('L002', 'L001'),
+('L003', 'L001'),
+('L004', 'L001'),
+('L005', 'L001'), -- L005 amigo de todos
+('L010', 'L010'); -- L010 sem amigos
+
+INSERT INTO Editoras (NIF, Nome, Email) VALUES
+('E001', 'Editora A', 'editoraa@example.com'),
+('E002', 'Editora B', 'editorab@example.com');
+
+
+INSERT INTO Encomenda (Valor, Dia, Mes, Ano, NIF_Editora) VALUES
+(100.00, 10, 3, 2024, 'E001'),
+(200.00, 15, 1, 2025, 'E002');
+
+INSERT INTO aluguer(id_exemplar,nif_leitor,valor,nºsemana,ano) 
+VALUES(4,'L002',5.00,3,2024);
+
+INSERT INTO genero(nome_genero) VALUES ('Mistério');
+INSERT INTO livros(isbn,titulo,nome_genero) VALUES (1212,'Cluedo','Mistério');
+INSERT INTO avaliacao(estrelas,comentario,isbn,nif_leitor) VALUES(3,'Fantástico',6666,'L001');
+INSERT INTO avaliacao(estrelas,comentario,isbn,nif_leitor) VALUES(4,'Incrivel',1212,'L001');
+
+
+INSERT INTO exemplares_de_livros(id_exemplar,isbn,link) VALUES(5,3333,'link_livro2222222.1'),
+(6,3333,'link_livro2222432.1'),
+(7,3333,'link_livro22222.1'),
+(8,3333,'link_livro22342.1'),
+(9,3333,'link_livro22232.1'),
+(10,4444,'link_livro2222.1'),
+(11,1212,'link_livro2213432.1'),
+(12,5555,'link_livro22322.1'),
+(13,7777,'link_livro243222.1'),
+(14,3333,'link_livro241222.1');
+
+INSERT INTO aluguer(id_exemplar,nif_leitor,valor,nºsemana,ano) VALUES(5,'L002',5,3,2024),
+(6,'L002',5,3,2024),
+(7,'L002',5,1,2024),
+(8,'L002',5,1,2024),
+(9,'L002',5,2,2024),
+(10,'L002',5,2,2024),
+(11,'L002',5,3,2024),
+(12,'L002',5,3,2024),
+(13,'L002',5,2,2024),
+(14,'L002',5,3,2024);
+
+INSERT INTO aluguer(id_exemplar,nif_leitor,valor,nºsemana,ano) VALUES(1,'L002',5,4,2024);
+
+INSERT INTO amizade(nif_amigo,nif_leitor) VALUES('L001','L003'),
+('L002','L003'),
+('L006','L003'),
+('L003','L002'),
+('L003','L006');
+
+INSERT INTO Exemplares_de_Livros (Id_exemplar, ISBN, Link) VALUES (15, '1111', 'link_memorial');
+
+
+10 - 
+a)
+SELECT NIF, Nome 
+FROM Leitor 
+WHERE Tipo = 'Regular';
+
+b)
+SELECT G.Nome_genero, L.Titulo, A.Nome AS Autor
+FROM Genero G
+JOIN Livros L ON G.Nome_genero = L.Nome_genero
+JOIN Livro_Autor LA ON L.ISBN = LA.ISBN
+JOIN Autores A ON LA.Id_autor = A.Id_autor;
+
+c)
+SELECT Nome_genero, COUNT(ISBN) AS Numero_de_Livros
+FROM Livros
+GROUP BY Nome_genero;
+
+d)
+
+SELECT L.NIF, COUNT(A.NIF_Amigo) AS Numero_de_Amigos
+FROM Leitor L
+JOIN Amizade A ON L.NIF = A.NIF_Leitor
+WHERE L.Tipo = 'Frequente'
+GROUP BY L.NIF;
+
+e)
+SELECT E.ISBN, COUNT(E.Id_exemplar) AS Exemplares_Encomendados
+FROM Exemplares_de_Livros E
+JOIN Aluguer A ON E.Id_exemplar = A.Id_exemplar
+WHERE A.NºSemana = 3 AND A.Ano = 2024
+GROUP BY E.ISBN;
+
+f)
+SELECT L.NIF, B.Titulo, A.NºSemana, A.Ano, A.Valor
+FROM Leitor L
+JOIN Aluguer A ON L.NIF = A.NIF_Leitor
+JOIN Exemplares_de_Livros E ON A.Id_exemplar = E.Id_exemplar
+JOIN Livros B ON E.ISBN = B.ISBN;
+
+g)
+SELECT B.Titulo, L.NIF, A.NºSemana, A.Ano, A.Valor
+FROM Livros B
+JOIN Exemplares_de_Livros E ON B.ISBN = E.ISBN
+JOIN Aluguer A ON E.Id_exemplar = A.Id_exemplar
+JOIN Leitor L ON A.NIF_Leitor = L.NIF;
+
+
+h)
+SELECT L.NIF, 
+       COALESCE(SUM(A.Valor), 0) - COALESCE(SUM(F.Valor), 0) AS Divida,
+       COALESCE(SUM(F.Valor), 0) AS Pago
+FROM Leitor L
+LEFT JOIN Aluguer A ON L.NIF = A.NIF_Leitor AND A.NºSemana <= 4 AND A.Ano = 2024
+LEFT JOIN Faturacao F ON L.NIF = F.NIF_Leitor AND F.Mes <= 1 AND F.Ano = 2024
+GROUP BY L.NIF;
+
+i)
+SELECT A.NIF_Leitor, A.Estrelas, A.Comentario
+FROM Avaliacao A
+JOIN Livros L ON A.ISBN = L.ISBN
+WHERE L.Titulo = 'Memorial do Convento';
+
+
+j)
+SELECT DISTINCT A.NIF_Amigo
+FROM Amizade A
+JOIN Avaliacao AV ON A.NIF_Leitor = AV.NIF_Leitor
+JOIN Livros L ON AV.ISBN = L.ISBN
+WHERE L.Nome_genero IN ('Mistério', 'Fantasia');
+
+k)
+SELECT A.NIF_Leitor, COUNT(A.Id_exemplar) AS Total_Livros
+FROM Aluguer A
+WHERE A.NºSemana <= 4 AND A.Ano = 2024
+GROUP BY A.NIF_Leitor
+HAVING COUNT(A.Id_exemplar) > 10;
+
+l)
+SELECT L.ISBN, L.Titulo, AVG(A.Estrelas) AS Media_Estrelas
+FROM Avaliacao A
+JOIN Livros L ON A.ISBN = L.ISBN
+GROUP BY L.ISBN, L.Titulo
+HAVING AVG(A.Estrelas) > 3;
+
+m)
+SELECT L.NIF
+FROM Leitor L
+WHERE L.Tipo = 'Frequente' AND L.NIF NOT IN (
+    SELECT A.NIF_Leitor
+    FROM Aluguer A
+    JOIN Exemplares_de_Livros E ON A.Id_exemplar = E.Id_exemplar
+    JOIN Livros B ON E.ISBN = B.ISBN
+    WHERE B.Titulo = 'Memorial do Convento'
+);
+
+
+n)
+SELECT A.NIF_Leitor, COUNT(A.Id_exemplar) AS Total_Livros
+FROM Aluguer A
+WHERE A.NºSemana = 4
+GROUP BY A.NIF_Leitor
+ORDER BY Total_Livros DESC
+LIMIT 1;
+
+o)
+SELECT E.ISBN, L.Titulo, COUNT(A.Id_exemplar) AS Total_Alugueres
+FROM Aluguer A
+JOIN Exemplares_de_Livros E ON A.Id_exemplar = E.Id_exemplar
+JOIN Livros L ON E.ISBN = L.ISBN
+WHERE A.NºSemana <= 8 AND A.Ano = 2024
+GROUP BY E.ISBN, L.Titulo
+ORDER BY Total_Alugueres DESC
+LIMIT 1;
+
+p)
+SELECT DISTINCT A.NIF_Amigo
+FROM Amizade A
+WHERE NOT EXISTS (
+    SELECT DISTINCT L.NIF
+    FROM Leitor L
+    JOIN Aluguer Al ON L.NIF = Al.NIF_Leitor
+    JOIN Exemplares_de_Livros E ON Al.Id_exemplar = E.Id_exemplar
+    JOIN Livros B ON E.ISBN = B.ISBN
+    WHERE B.Titulo = 'Memorial do Convento'
+    AND L.NIF NOT IN (SELECT A2.NIF_Amigo FROM Amizade A2 WHERE A2.NIF_Amigo = A.NIF_Amigo)
+);
+
+q)
+SELECT L.NIF
+FROM Leitor L
+WHERE L.NIF NOT IN (
+    SELECT DISTINCT A.NIF_Leitor
+    FROM Amizade A
+);
+
+r)
+SELECT L.NIF
+FROM Leitor L
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Aluguer A
+    WHERE A.NIF_Leitor = L.NIF
+    GROUP BY A.NIF_Leitor
+    HAVING SUM(A.Valor) > (
+        SELECT COALESCE(SUM(F.Valor), 0) FROM Faturacao F WHERE F.NIF_Leitor = L.NIF
+    )
+);
+
+t)
+
+SELECT ISBN, COUNT(Id_exemplar) AS Total_Exemplares
+FROM Exemplares_de_Livros
+GROUP BY ISBN;
+
+

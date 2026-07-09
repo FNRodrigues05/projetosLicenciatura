@@ -1,0 +1,457 @@
+2-
+
+Entidades:
+
+Leitor("NIF_Leitor",Nome,Email,Nacionalidade,Tipo)
+
+Leitor Regular("NIF_Leitor")
+
+Leitor Frequente("NIF_Leitor")
+
+Amizade("Nif_Amigo",NIF_Leitor)
+NIF Chave Estrangeira
+
+Aluguer(Id_Exemplar,NIF_Leitor,valor,nºSemana,Ano)
+Id_Exemplar e NIF são Chave Estrangeira
+
+Faturação(NIF_Leitor,Mês,Ano,Valor)
+NIF é Chave Estrangeira
+
+Avaliação(NIF_Leitor,ISBN,Estrelas,Comentario)
+NIF e ISBN são Chave Estrangeira
+
+Livros("ISBN",Titulo)
+
+Exemplares("Id_Exemplar",link)
+
+Autor("Id_Autor",Nome,Nacionalidade)
+
+Genero("Nome_Genero",ISBN)
+ISBN chave estrangeira
+
+Editora("NIF_Editora",Nome,Email)
+
+Encomenda(NIF_Editora,"valor","Dia","Mes","ano")
+NIF é chave estrangeira
+
+
+Relações:
+
+Livro_Genero ("ISBN", "Nome_genero")
+
+Livro_Autor("ISBN","ID_Autor")
+
+Encomenda_Editora("NIF_Editora")
+
+Livro_Exemplar("Id_Exemplar",ISBN)
+
+Avaliação_Livro("ISBN")
+
+Avaliação_Leitor("NIF_Leitor")
+
+Leitor_Amizade("NIF_Amigo","NIF_Leitor")
+
+Leitor_Aluguer("NIF_Leitor")
+
+Leitor_Faturação("NIF_Leitor")
+
+Aluguer_Exemplar("Id_Exemplar",NIF_Leitor,valor,NºSemana,Ano)
+
+Livro_Editora("ISBN",NIF_Editora)
+
+
+3-
+
+Cada Exemplar tem um só livro
+
+Cada Encomenda tem uma só Editora
+
+Cada Livro tem uma só editora
+
+Cada Avaliação tem um só livro
+
+Cada Avaliação tem um só leitor
+
+Cada Exemplar tem um só Aluguer
+
+Cada Faturação tem um só leitor
+
+Cada Aluguer tem um só leitor
+
+Loja_Virtual(Leitor,Autor,Livro,Exemplar,Género,Faturação,Avaliação,Encomenda,Editora,Aluguer,Amizade)
+
+Exemplar -> Livro
+Encomenda -> Editora
+Livro -> Editora
+Avaliação -> Livro
+Avaliação -> Leitor
+Exemplar -> Aluguer
+Faturação -> Leitor
+Aluguer -> Leitor
+
+
+4-
+
+Exemplar -> Livro, Aluguer
+Avaliação -> Livro, Leitor
+Encomenda -> Editora
+Livro -> Editora
+Faturação -> Leitor
+Aluguer -> Leitor
+
+A Chave Candidata é (Exemplar,Avaliação,Encomenda,Faturação,Amizade,Género,Autor)
+
+
+5-
+
+R1- Exemplar,Livro,Aluguer
+R2- Avaliação,Livro,Leitor
+R3- Encomenda,Editora
+R4- Livro,Editora
+R5- Faturação,Leitor
+R6- Aluguer,Leitor
+R7- Amizade
+R8- Género
+R9- Autor
+
+
+6-
+A base de dados da alínea anterior preserva as dependências e o resultado para a terceira forma normal seria igual.
+
+
+7-
+
+Livro_Genero ("ISBN", "Nome_genero")
+
+Chaves Primárias: ("ISBN", "Nome_genero")
+Chaves Estrangeiras: "ISBN", "Nome_genero"
+Chaves Candidatas: ("ISBN", "Nome_genero")
+
+Livro_Autor ("ISBN", "ID_Autor")
+
+Chaves Primárias: ("ISBN", "ID_Autor")
+Chaves Estrangeiras: "ISBN", "ID_Autor"
+Chaves Candidatas: ("ISBN", "ID_Autor")
+
+Encomenda_Editora ("NIF_Editora")
+
+Chaves Primárias: "NIF_Editora"
+Chaves Estrangeiras: "NIF_Editora"
+Chaves Candidatas: "NIF_Editora"
+
+
+Livro_Exemplar ("Id_Exemplar", "ISBN")
+
+Chaves Primárias: "Id_Exemplar"
+Chaves Estrangeiras: "ISBN"
+Chaves Candidatas: "Id_Exemplar"
+
+Avaliação_Livro ("ISBN")
+
+Chaves Primárias: "ISBN"
+Chaves Estrangeiras: "ISBN"
+Chaves Candidatas: "ISBN"
+
+Avaliação_Leitor ("NIF_Leitor")
+
+Chaves Primárias: "NIF_Leitor"
+Chaves Estrangeiras: "NIF_Leitor"
+Chaves Candidatas: "NIF_Leitor"
+
+Leitor_Amizade ("NIF_Amigo", "NIF_Leitor")
+
+Chaves Primárias: ("NIF_Amigo", "NIF_Leitor")
+Chaves Estrangeiras: "NIF_Amigo", "NIF_Leitor"
+Chaves Candidatas: ("NIF_Amigo", "NIF_Leitor")
+
+Leitor_Aluguer ("NIF_Leitor")
+
+Chaves Primárias: "NIF_Leitor"
+Chaves Estrangeiras: "NIF_Leitor"
+Chaves Candidatas: "NIF_Leitor"
+
+Leitor_Faturação ("NIF_Leitor")
+
+Chaves Primárias: "NIF_Leitor"
+Chaves Estrangeiras: "NIF_Leitor"
+Chaves Candidatas: "NIF_Leitor"
+
+Aluguer_Exemplar ("Id_Exemplar", "NIF_Leitor", "valor", "NºSemana", "Ano")
+
+Chaves Primárias: ("Id_Exemplar", "NºSemana", "Ano")
+Chaves Estrangeiras: "Id_Exemplar", "NIF_Leitor"
+Chaves Candidatas: ("Id_Exemplar", "NºSemana", "Ano")
+
+Livro_Editora ("ISBN", "NIF_Editora")
+
+Chaves Primárias: ("ISBN", "NIF_Editora")
+Chaves Estrangeiras: "ISBN", "NIF_Editora"
+Chaves Candidatas: ("ISBN", "NIF_Editora")
+
+8-
+CREATE TABLE Editoras (
+    NIF VARCHAR(20) PRIMARY KEY,
+    Nome VARCHAR(100),
+    Email VARCHAR(100)
+);
+
+-- Criação da tabela Genero
+CREATE TABLE Genero (
+    Nome_genero VARCHAR(50) PRIMARY KEY
+);
+
+-- Criação da tabela Livros
+CREATE TABLE Livros (
+    ISBN VARCHAR(20) PRIMARY KEY,
+    Titulo VARCHAR(100),
+    Nome_genero VARCHAR(50),
+    FOREIGN KEY (Nome_genero) REFERENCES Genero(Nome_genero)
+);
+
+-- Criação da tabela Autores
+CREATE TABLE Autores (
+    Id_autor SERIAL PRIMARY KEY,
+    Nome VARCHAR(100),
+    Nacionalidade VARCHAR(50)
+);
+
+
+-- Criação da tabela Encomenda
+CREATE TABLE Encomenda (
+    Valor DECIMAL(10, 2),
+    Dia INT,
+    Mes INT,
+    Ano INT,
+    NIF_Editora VARCHAR(20),
+    PRIMARY KEY (Dia, Mes, Ano, NIF_Editora),
+    FOREIGN KEY (NIF_Editora) REFERENCES Editoras(NIF)
+);
+
+
+-- Criação da tabela Exemplares de Livros
+CREATE TABLE Exemplares_de_Livros (
+    Id_exemplar SERIAL PRIMARY KEY,
+    ISBN VARCHAR(20),
+    Link VARCHAR(200),
+    FOREIGN KEY (ISBN) REFERENCES Livros(ISBN)
+);
+
+-- Criação da tabela Leitor
+CREATE TABLE Leitor (
+    NIF VARCHAR(20) PRIMARY KEY,
+    Nome VARCHAR(100),
+    Email VARCHAR(100),
+    Nacionalidade VARCHAR(50),
+    Tipo VARCHAR(20) CHECK (Tipo IN ('Regular', 'Frequente'))
+);
+
+-- Criação da tabela Amizade
+CREATE TABLE Amizade (
+    NIF_Amigo VARCHAR(20),
+    NIF_Leitor VARCHAR(20),
+    PRIMARY KEY (NIF_Amigo, NIF_Leitor),
+    FOREIGN KEY (NIF_Amigo) REFERENCES Leitor(NIF),
+    FOREIGN KEY (NIF_Leitor) REFERENCES Leitor(NIF)
+);
+
+-- Criação da tabela Avaliação
+CREATE TABLE Avaliacao (
+    Estrelas INT CHECK (Estrelas BETWEEN 1 AND 5),
+    Comentario TEXT,
+    ISBN VARCHAR(20),
+    NIF_Leitor VARCHAR(20),
+    PRIMARY KEY (ISBN, NIF_Leitor),
+    FOREIGN KEY (ISBN) REFERENCES Livros(ISBN),
+    FOREIGN KEY (NIF_Leitor) REFERENCES Leitor(NIF)
+);
+
+-- Criação da tabela Faturação
+CREATE TABLE Faturacao (
+    Mes INT,
+    Ano INT,
+    Valor DECIMAL(10, 2),
+    NIF_Leitor VARCHAR(20),
+    PRIMARY KEY (Mes, Ano, NIF_Leitor),
+    FOREIGN KEY (NIF_Leitor) REFERENCES Leitor(NIF)
+);
+
+-- Criação da tabela Aluguer
+CREATE TABLE Aluguer (
+    Id_exemplar INT,
+    NIF_Leitor VARCHAR(20),
+    Valor DECIMAL(10, 2),
+    NºSemana INT,
+    Ano INT,
+    PRIMARY KEY (Id_exemplar, NºSemana, Ano),
+    FOREIGN KEY (Id_exemplar) REFERENCES Exemplares_de_Livros(Id_exemplar),
+    FOREIGN KEY (NIF_Leitor) REFERENCES Leitor(NIF)
+);
+
+--criação da tabela livro_Autor
+CREATE TABLE Livro_Autor (
+    ISBN VARCHAR(20),
+    Id_autor INT,
+    PRIMARY KEY (ISBN, Id_autor),
+    FOREIGN KEY (ISBN) REFERENCES Livros(ISBN),
+    FOREIGN KEY (Id_autor) REFERENCES Autores(Id_autor)
+);
+
+9-
+Leitores - 10 leitores, 5 regulares e 5 frequentes.
+
+INSERT INTO Leitor (NIF, Nome, Email, Nacionalidade, Tipo) VALUES
+('L001', 'João Silva', 'joao@email.com', 'Portugal', 'Regular'),
+('L002', 'Ana Santos', 'ana@email.com', 'Brasil', 'Regular'),
+('L003', 'Pedro Oliveira', 'pedro@email.com', 'Angola', 'Regular'),
+('L004', 'Maria Costa', 'maria@email.com', 'Portugal', 'Regular'),
+('L005', 'Carlos Gomes', 'carlos@email.com', 'Moçambique', 'Regular'),
+('L006', 'Cláudia Ramos', 'claudia@email.com', 'Portugal', 'Frequente'),
+('L007', 'Luís Ferreira', 'luis@email.com', 'Brasil', 'Frequente'),
+('L008', 'Sofia Monteiro', 'sofia@email.com', 'Angola', 'Frequente'),
+('L009', 'Rafael Cruz', 'rafael@email.com', 'Portugal', 'Frequente'),
+('L010', 'Helena Martins', 'helena@email.com', 'Cabo Verde', 'Frequente');
+
+
+• Géneros - 6 géneros.
+
+INSERT INTO Genero (Nome_genero) VALUES
+('Romance'),
+('Histórico'),
+('Drama'),
+('Ficção Científica'),
+('Fantasia'),
+('Biografia');
+
+
+• Livros: 10 obras de 3 autores diferentes, com 3 géneros em cada obra e coloque 3
+exemplares para cada obra, 2 obras tem dois autores. Um dos livros deve ser o ’Memorial
+do Convento’.
+
+INSERT INTO Livros (ISBN, Titulo, Nome_genero) VALUES
+('1111', 'Memorial do Convento', 'Romance'),
+('2222', 'O Alquimista', 'Ficção Científica'),
+('3333', '1984', 'Drama'),
+('4444', 'Dom Casmurro', 'Histórico'),
+('5555', 'A Revolução dos Bichos', 'Drama'),
+('6666', 'Senhor dos Anéis', 'Fantasia'),
+('7777', 'Harry Potter', 'Fantasia'),
+('8888', 'O Pequeno Príncipe', 'Biografia'),
+('9999', 'Os Maias', 'Romance'),
+('1010', 'A Metamorfose', 'Histórico');
+
+INSERT INTO Autores (Nome, Nacionalidade) VALUES
+('José Saramago', 'Portugal'),
+('George Orwell', 'Reino Unido'),
+('J.K. Rowling', 'Reino Unido');
+
+--NOTA: criação de um tabela para garantir que os livros tenham autores já que o nosso não tem(falha)
+
+INSERT INTO Livro_Autor (ISBN, Id_autor) VALUES
+('1111', 1),
+('2222', 2),
+('3333', 2),
+('4444', 1),
+('5555', 2),
+('7777', 3);
+
+INSERT INTO Exemplares_de_Livros (ISBN, Link) VALUES
+('1111', 'link_livro1111'),
+('2222', 'link_livro2222'),
+('2222', 'link_livro2222_2'),
+('2222', 'link_livro2222_3');
+
+
+• Aluguer : 1 por semana nos regulares e 3 por semana nos frequentes. Considere só 8
+semanas e um leitor regular sem nenhum aluguer nessas semanas.
+
+INSERT INTO Aluguer (Id_exemplar, NIF_Leitor, Valor, NºSemana, Ano) VALUES
+(1, 'L001', 5.00, 1, 2025),
+(2, 'L002', 5.00, 2, 2025),
+(3, 'L006', 10.00, 1, 2025);
+
+
+• Pagamentos: os pagamentos de 9 leitores corretos e 1 que faça um pagamento inferior
+ao devido.
+
+INSERT INTO Faturacao (Mes, Ano, Valor, NIF_Leitor) VALUES
+(1, 2025, 50.00, 'L001'),
+(1, 2025, 60.00, 'L002'),
+(1, 2025, 40.00, 'L003'),
+(1, 2025, 30.00, 'L010'), -- Pagamento incorreto
+(1, 2025, 75.00, 'L004'),
+(1, 2025, 90.00, 'L005');
+
+• Avaliaçoes: coloque 3 avaliaçõoes por cada leitor de forma a que todos os livros tenham
+pelo menos uma avaliaçãao. Deixe um livro sem avaliaçao.
+
+INSERT INTO Avaliacao (Estrelas, Comentario, ISBN, NIF_Leitor) VALUES
+(5, 'Obra incrível', '1111', 'L001'),
+(4, 'Muito interessante', '2222', 'L002'),
+(3, 'Regular', '3333', 'L003');
+
+• Amigos: coloque 2 ou mais amigos em cada leitor. Coloque um que seja amigo de todos
+e um que não tenha nenhum amigo.
+
+INSERT INTO Amizade (NIF_Amigo, NIF_Leitor) VALUES
+('L002', 'L001'),
+('L003', 'L001'),
+('L004', 'L001'),
+('L005', 'L001'), -- L005 amigo de todos
+('L010', 'L010'); -- L010 sem amigos
+
+Editoras: 
+
+INSERT INTO Editoras (NIF, Nome, Email) VALUES
+('E001', 'Editora A', 'editoraa@example.com'),
+('E002', 'Editora B', 'editorab@example.com');
+
+• Encomendas: coloque 2 encomendas a duas editoras: uma com 2 obras e 2 exemplares
+de uma e 3 de outra: outra com uma obra e um exemplar.
+
+INSERT INTO Encomenda (Valor, Dia, Mes, Ano, NIF_Editora) VALUES
+(100.00, 10, 3, 2024, 'E001'),
+(200.00, 15, 1, 2025, 'E002');
+
+INSERT INTO aluguer(id_exemplar,nif_leitor,valor,nºsemana,ano) 
+VALUES(4,'L002',5.00,3,2024);
+
+INSERT INTO genero(nome_genero) VALUES ('Mistério');
+INSERT INTO livros(isbn,titulo,nome_genero) VALUES (1212,'Cluedo','Mistério');
+INSERT INTO avaliacao(estrelas,comentario,isbn,nif_leitor) VALUES(3,'Fantástico',6666,'L001');
+INSERT INTO avaliacao(estrelas,comentario,isbn,nif_leitor) VALUES(4,'Incrivel',1212,'L001');
+
+
+INSERT INTO exemplares_de_livros(id_exemplar,isbn,link) VALUES(5,3333,'link_livro2222222.1'),
+(6,3333,'link_livro2222432.1'),
+(7,3333,'link_livro22222.1'),
+(8,3333,'link_livro22342.1'),
+(9,3333,'link_livro22232.1'),
+(10,4444,'link_livro2222.1'),
+(11,1212,'link_livro2213432.1'),
+(12,5555,'link_livro22322.1'),
+(13,7777,'link_livro243222.1'),
+(14,3333,'link_livro241222.1');
+
+INSERT INTO aluguer(id_exemplar,nif_leitor,valor,nºsemana,ano) VALUES(5,'L002',5,3,2024),
+(6,'L002',5,3,2024),
+(7,'L002',5,1,2024),
+(8,'L002',5,1,2024),
+(9,'L002',5,2,2024),
+(10,'L002',5,2,2024),
+(11,'L002',5,3,2024),
+(12,'L002',5,3,2024),
+(13,'L002',5,2,2024),
+(14,'L002',5,3,2024);
+
+INSERT INTO aluguer(id_exemplar,nif_leitor,valor,nºsemana,ano) VALUES(1,'L002',5,4,2024);
+
+INSERT INTO amizade(nif_amigo,nif_leitor) VALUES('L001','L003'),
+('L002','L003'),
+('L006','L003'),
+('L003','L002'),
+('L003','L006');
+
+INSERT INTO Exemplares_de_Livros (Id_exemplar, ISBN, Link) VALUES (15, '1111', 'link_memorial');
+
+
+
